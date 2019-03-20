@@ -1,4 +1,4 @@
-unction buildMetadata(sample) {
+function buildMetadata(sample) {
 
   // @TODO: Complete the following function that builds the metadata panel
 
@@ -18,8 +18,8 @@ unction buildMetadata(sample) {
     // tags for each key-value in the metadata.
     Object.entries(sampleData).forEach(([key, value]) => {
       panel.append("h6").text(`${key}: ${value}`);
-});
-});
+      });
+  });
 };
     
 
@@ -42,11 +42,11 @@ function buildCharts(sample) {
       labels: otu_ids.slice(0,10),
       hoverinfo: "hovertext",
       type: "pie"
-};
+    };
 
     var pieLayout = {
       margin: {t: 0, 1: 0}
-};
+    };
 
     Plotly.newPlot("pie", [pieData], pieLayout);
     
@@ -60,8 +60,8 @@ function buildCharts(sample) {
         size: sample_values,
         color: otu_ids,
         colorscale: "Earth",
-}
-};
+      }
+    };
     
     var bubbleLayout = {
       margin: {t: 0},
@@ -72,7 +72,7 @@ function buildCharts(sample) {
     //Build out data dictionary and layout dictionary
 
     Plotly.newPlot("bubble", [bubbleData], bubbleLayout);
-})
+  })
 }
 
 function init() {
@@ -83,16 +83,16 @@ function init() {
   d3.json("/names").then((sampleNames) => {
     sampleNames.forEach((sample) => {
       selector
-.append("option")
-.text(sample)
-.property("value", sample);
-});
+        .append("option")
+        .text(sample)
+        .property("value", sample);
+    });
 
     // Use the first sample from the list to build the initial plots
     const firstSample = sampleNames[0];
     buildCharts(firstSample);
     buildMetadata(firstSample);
-});
+  });
 }
 
 function optionChanged(newSample) {
